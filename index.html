@@ -278,7 +278,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/08/booksdata/" itemprop="url">data文件测试</a></h1>
+                <a class="post-title-link" href="/2018/12/08/booksdata/" itemprop="url">异步测试</a></h1>
         
 
         <div class="post-meta">
@@ -340,9 +340,14 @@
       
         
           
-          &lt;% for (var link in site.data.menu) { %&gt;  "> &lt;%= link %&gt; &lt;% } %&gt;
-
           
+
+  layui.use(['jquery', 'layer'], function(){ 
+  var $ = layui.$ //重点处
+  ,layer = layui.layer;
+
+  /
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/12/08/booksdata/#more" rel="contents">

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="&amp;lt;% for (var link in site.data.menu) { %&amp;gt;   &amp;lt;%= link %&amp;gt; &amp;lt;% } %&amp;gt;">
+<meta name="description" content="layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$ //重点处   ,layer = layui.layer;    //后面就跟你平时使用jQuery一样   $.ajax({     type:&quot;GET&quot;,     url: &quot;https://pvp.qq.com/web201605/js/herolist.jso">
 <meta property="og:type" content="article">
-<meta property="og:title" content="data文件测试">
+<meta property="og:title" content="异步测试">
 <meta property="og:url" content="http://yoursite.com/2018/12/08/booksdata/index.html">
 <meta property="og:site_name" content="First Hexo">
-<meta property="og:description" content="&amp;lt;% for (var link in site.data.menu) { %&amp;gt;   &amp;lt;%= link %&amp;gt; &amp;lt;% } %&amp;gt;">
+<meta property="og:description" content="layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$ //重点处   ,layer = layui.layer;    //后面就跟你平时使用jQuery一样   $.ajax({     type:&quot;GET&quot;,     url: &quot;https://pvp.qq.com/web201605/js/herolist.jso">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-08T10:18:58.437Z">
+<meta property="og:updated_time" content="2018-12-08T14:55:23.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="data文件测试">
-<meta name="twitter:description" content="&amp;lt;% for (var link in site.data.menu) { %&amp;gt;   &amp;lt;%= link %&amp;gt; &amp;lt;% } %&amp;gt;">
+<meta name="twitter:title" content="异步测试">
+<meta name="twitter:description" content="layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$ //重点处   ,layer = layui.layer;    //后面就跟你平时使用jQuery一样   $.ajax({     type:&quot;GET&quot;,     url: &quot;https://pvp.qq.com/web201605/js/herolist.jso">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>data文件测试 | First Hexo</title>
+  <title>异步测试 | First Hexo</title>
   
 
 
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">data文件测试</h1>
+          <h1 class="post-title" itemprop="name headline">异步测试</h1>
         
 
         <div class="post-meta">
@@ -339,7 +339,29 @@
       
 
       
-        <p>&lt;% for (var link in site.data.menu) { %&gt;<br>  <a href="<%= site.data.menu[link] %>"> &lt;%= link %&gt; </a><br>&lt;% } %&gt;</p>
+        <script src="/lib/lay/layui.js" charset="utf-8"></script>
+<script>
+  layui.use(['jquery', 'layer'], function(){ 
+  var $ = layui.$ //重点处
+  ,layer = layui.layer;
+
+  //后面就跟你平时使用jQuery一样
+  $.ajax({
+    type:"GET",
+    url: "https://pvp.qq.com/web201605/js/herolist.json", //访问的链接
+    dataType: "jsonp",  //数据格式设置为jsonp
+    sonp: "callback",  //Jquery生成验证参数的名称
+    success: function(data){  //成功的回调函数
+      alert(data);
+    },
+    error:function(XMLHttpRequest, textStatus, errorThrown) {
+        alert(XMLHttpRequest.status);
+        alert(XMLHttpRequest.readyState);
+        alert(textStatus);
+    }
+  });
+});
+</script>
 
       
     </div>
