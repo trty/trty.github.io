@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说           layui.use(&apos;table&apos;, function(){   var herolist = [];   $.ajax({     type:&quot;GET&quot;,     url: &quot;/json/herolist.json&quot;,     dataType: &quot;json&quot;,">
+<meta name="description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说         layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display&quot;,&quot;no">
 <meta property="og:type" content="article">
 <meta property="og:title" content="农药数据库">
 <meta property="og:url" content="http://yoursite.com/2018/12/08/herolist/index.html">
 <meta property="og:site_name" content="First Hexo">
-<meta property="og:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说           layui.use(&apos;table&apos;, function(){   var herolist = [];   $.ajax({     type:&quot;GET&quot;,     url: &quot;/json/herolist.json&quot;,     dataType: &quot;json&quot;,">
+<meta property="og:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说         layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display&quot;,&quot;no">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T17:32:45.090Z">
+<meta property="og:updated_time" content="2018-12-13T02:39:09.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="农药数据库">
-<meta name="twitter:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说           layui.use(&apos;table&apos;, function(){   var herolist = [];   $.ajax({     type:&quot;GET&quot;,     url: &quot;/json/herolist.json&quot;,     dataType: &quot;json&quot;,">
+<meta name="twitter:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说         layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display&quot;,&quot;no">
 
 
 
@@ -377,6 +377,14 @@
 <p><link rel="stylesheet" href="/lib/lay/css/layui.css" media="all"></p>
 <script src="/lib/lay/layui.js" charset="utf-8"></script>
 <script>
+layui.use(['jquery', 'layer'], function(){ 
+  var $ = layui.$;
+  function recoverphoto(){
+    ifshow=1;
+    $("#photos").css("display","none");
+  }
+});
+var ifshow=1;//是否显示弹窗
   layui.use('table', function(){
   var herolist = [];
   $.ajax({
@@ -393,7 +401,10 @@
           ,width: 700
       ,cols: [[{field:'heroid', align: 'center', title: '编号',width:70,sort:true }
         ,{field:'heroname', align: 'center', title: '名字', width: 100,sort: true,event: 'showhead',templet: function(t){
-  return '<p id="hero'+t.heroid+'">'+t.heroname+'</p>'
+  if(t.ifnew==1){
+    return '<p id="hero'+t.heroid+'">'+t.heroname+'(<span style="color:red">new!</span>)</p>'
+  }else{
+    return '<p id="hero'+t.heroid+'">'+t.heroname+'</p>';}
     }
   }
         ,{field:'herotype', align: 'center', title: '类型', sort: true,
@@ -429,30 +440,49 @@
       alert("英雄数据请求失败");
     }
   });
+  $(".back-to-top").after('<div id="photos" style="position:fixed;right:50px;bottom:80px;display:none;"><button class="layui-btn">恢复相册</button></div>');
   var table = layui.table; 
   //监听单元格事件
   var layer = layui.layer;
+  layer.msg('点击表格可查看皮肤',{
+    time: 3000
+  });
   table.on('row(demoEvent)', function(obj){
     layer.close(layer.index);
     var heroid = obj.data["heroid"];
-    if(true){//obj.event 可以获取事件
-      var con='<div id="hero-headimg'+heroid+'" class="layer-photos-demo">';
-          for(var i=1;i<=obj.data["skins"].split("|").length;i++){
-        con+='<img layer-pid="'+heroid+'" layer-src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/'+heroid+'/'+heroid+'-bigskin-'+i+'.jpg" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/'+heroid+'/'+heroid+'-smallskin-'+i+'.jpg" alt="'+heroid+'">';
+    var skins = obj.data["skins"].split("|").length;
+    if(ifshow==1){//obj.event 可以获取事件
+      var con='<div id="hero-headimg'+heroid+'" class="layer-photos-demo"><ul>';
+          for(var i=1;i<=skins;i++){
+        con+='<li><img layer-pid="'+heroid+'" layer-src="https://game.gtimg.cn/images/yxzj/img201606/skin/hero-info/'+heroid+'/'+heroid+'-bigskin-'+i+'.jpg" src="https://game.gtimg.cn/images/yxzj/img201606/heroimg/'+heroid+'/'+heroid+'-smallskin-'+i+'.jpg" alt="'+obj.data["skins"].split("|")[i-1]+'" style="width:100ox;height:100px"></li>';
       }
-      con+='</div>';
+      con+='</ul></div>';
       layer.open({
-      title: '点击展开全图'
-      ,area: 'auto'
+      title: '点击头像展开全图'
+      ,area: ['0px',110+100*(skins%2==0?skins/2:skins/2+1)+'px']
+      ,btn:['不再显示','关闭']
       ,content: con
       ,tipsMore :false
       ,shade: false
       ,offset: 'rb'
+      ,yes: function(index, layero){
+        layer.close(index);
+        ifshow=0;
+        $("#photos").css("display","block");
+        $("#photos").on("click",function(){
+          ifshow=1;
+          $("#photos").css("display","none");
+          layer.msg('已恢复~',{
+            time: 2000
+          });
+         });
+      }
     });
    layer.photos({
           photos: '#hero-headimg'+heroid
     }); 
     }
+    $(".layer-photos-demo img").css("float","left");
   });
 
 });
