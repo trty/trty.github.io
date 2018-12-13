@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说         layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display&quot;,&quot;no">
+<meta name="description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说          还在思考装备的布局，不适合用上面的    layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#phot">
 <meta property="og:type" content="article">
 <meta property="og:title" content="农药数据库">
 <meta property="og:url" content="http://yoursite.com/2018/12/08/herolist/index.html">
 <meta property="og:site_name" content="First Hexo">
-<meta property="og:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说         layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display&quot;,&quot;no">
+<meta property="og:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说          还在思考装备的布局，不适合用上面的    layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#phot">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-13T02:39:09.628Z">
+<meta property="og:updated_time" content="2018-12-13T09:27:08.992Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="农药数据库">
-<meta name="twitter:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说         layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display&quot;,&quot;no">
+<meta name="twitter:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说          还在思考装备的布局，不适合用上面的    layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#phot">
 
 
 
@@ -374,6 +374,7 @@
       
         <p>本来准备直接跨域获取pvp.qq.com的json<br>但是失败了，只能使用本地保存的json，不过内容一样的说</p>
 <p><div class="layui-col-md9"><br>  <table class="layui-hide" id="heros" lay-filter="demoEvent"><br>  </table><br></div></p>
+<p><div class="layui-col-md9"><br>  <table class="layui-hide" id="items" lay-filter="show"><br>  </table><br></div><br><strong>还在思考装备的布局，不适合用上面的</strong></p>
 <p><link rel="stylesheet" href="/lib/lay/css/layui.css" media="all"></p>
 <script src="/lib/lay/layui.js" charset="utf-8"></script>
 <script>
@@ -386,6 +387,7 @@ layui.use(['jquery', 'layer'], function(){
 });
 var ifshow=1;//是否显示弹窗
   layui.use('table', function(){
+  var table = layui.table;
   var herolist = [];
   $.ajax({
     type:"GET",
@@ -394,11 +396,10 @@ var ifshow=1;//是否显示弹窗
     success: function(data){
       herolist = data;
       console.log(herolist);
-      var table = layui.table;
       table.render({
       elem: '#heros'
       ,cellMinWidth: 80
-          ,width: 700
+          //,width: 700
       ,cols: [[{field:'heroid', align: 'center', title: '编号',width:70,sort:true }
         ,{field:'heroname', align: 'center', title: '名字', width: 100,sort: true,event: 'showhead',templet: function(t){
   if(t.ifnew==1){
@@ -484,6 +485,21 @@ var ifshow=1;//是否显示弹窗
     }
     $(".layer-photos-demo img").css("float","left");
   });
+   $.ajax({
+    type:"GET",
+    url: "/json/item.json",
+    dataType: "json",
+    success: function(data){
+       var items = data;
+       console.log(items);
+       table.render({
+      elem: '#items'
+      ,cellMinWidth: 80
+          //,width: 700
+      ,cols: [[{field:'itemid', align: 'center', title: '编号',width:70,sort:true},{field:'itemname', align: 'center', title: '装备',width:80,sort:true},{field:'type', align: 'center', title: '类型',width:80,sort:true},{field:'price', align: 'center', title: '价格',width:80,sort:true},{field:'des', align: 'center', title: '装备',width:200,sort:true}]]
+       });
+      }
+    });
 
 });
 </script>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="First Hexo">
 <meta property="og:description" content="个人喜好的一些小说，口味比较杂，以后会时不时更新的。 2018/12/08 17:35 于恩施市创建         layui.use(&apos;table&apos;, function(){   var mybooks =[];   $.ajax({   url: &quot;/json/books.json&quot;,   type: &quot;GET&quot;,   dataType:&apos;json&apos;,   success:function(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T03:39:49.165Z">
+<meta property="og:updated_time" content="2018-12-13T09:25:44.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="书单">
 <meta name="twitter:description" content="个人喜好的一些小说，口味比较杂，以后会时不时更新的。 2018/12/08 17:35 于恩施市创建         layui.use(&apos;table&apos;, function(){   var mybooks =[];   $.ajax({   url: &quot;/json/books.json&quot;,   type: &quot;GET&quot;,   dataType:&apos;json&apos;,   success:function(">
@@ -389,7 +389,6 @@ layui.use('table', function(){
   success:function(data){
     mybooks=data;
     console.log(mybooks);
-    var table = layui.table;
     table.render({
       elem: '#books'
       ,cellMinWidth: 80//全局定义常规单元格的最小宽度，layui 2.2.1 新增
