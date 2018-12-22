@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="First Hexo">
 <meta property="og:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说              layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-17T09:09:31.619Z">
+<meta property="og:updated_time" content="2018-12-17T09:21:06.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="农药数据库">
 <meta name="twitter:description" content="本来准备直接跨域获取pvp.qq.com的json但是失败了，只能使用本地保存的json，不过内容一样的说              layui.use([&apos;jquery&apos;, &apos;layer&apos;], function(){    var $ = layui.$;   function recoverphoto(){     ifshow=1;     $(&quot;#photos&quot;).css(&quot;display">
@@ -495,20 +495,20 @@ var ifmobile = /mobile|android|iphone|ipad|phone/i.test(navigator.userAgent);
     }); 
     $(".layer-photos-demo img").css("float","left");
   });
-   $.ajax({
-    type:"GET",
-    url: "/json/item.json",
-    dataType: "json",
-    success: function(data){
-       var items = data;
-       console.log(items);
-       table.render({
-      elem: '#items'
-      ,cellMinWidth: 80
-          //,width: 700
-      ,cols: [[{field:'itemid', align: 'center', title: '编号',width:70,sort:true},{field:'itemname', align: 'center', title: '装备',width:80,sort:true},{field:'type', align: 'center', title: '类型',width:80,sort:true},{field:'price', align: 'center', title: '价格',width:80,sort:true},{field:'des', align: 'center', title: '装备',width:200,sort:true}]]
-       });
-      }
+//    $.ajax({
+//     type:"GET",
+//     url: "/json/item.json",
+//     dataType: "json",
+//     success: function(data){
+//        var items = data;
+//        console.log(items);
+//        table.render({
+//       elem: '#items'
+//       ,cellMinWidth: 80
+//           //,width: 700
+//       ,cols: [[{field:'itemid', align: 'center', title: '编号',width:70,sort:true},{field:'itemname', align: 'center', title: '装备',width:80,sort:true},{field:'type', align: 'center', title: '类型',width:80,sort:true},{field:'price', align: 'center', title: '价格',width:80,sort:true},{field:'des', align: 'center', title: '装备',width:200,sort:true}]]
+//        });
+//       }
     });
 
 });
