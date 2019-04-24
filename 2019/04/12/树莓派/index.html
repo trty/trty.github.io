@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="First Hexo">
 <meta property="og:description" content="咳咳，一眨眼鸽了三个月，本来前段时间想写debian的kali系统里遇到的一些问题，但是忘记写了…再写怕回忆不完整（懒）刚好入了3B+的树莓派，这次就把完善的过程记录下来吧~不过树莓派还在路上，所以先占个坑…  铛铛铛，我回来了，树莓派终于到了，虽然xbox手柄还不知所踪，但是先不管了。首先把树莓派组装起来，放在外壳里（别插内存卡）   本体先放在一旁，用读卡器把内存卡插入电脑，下载官方提供的xx">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-12T11:42:58.279Z">
+<meta property="og:updated_time" content="2019-04-12T12:40:45.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="树莓派3B+">
 <meta name="twitter:description" content="咳咳，一眨眼鸽了三个月，本来前段时间想写debian的kali系统里遇到的一些问题，但是忘记写了…再写怕回忆不完整（懒）刚好入了3B+的树莓派，这次就把完善的过程记录下来吧~不过树莓派还在路上，所以先占个坑…  铛铛铛，我回来了，树莓派终于到了，虽然xbox手柄还不知所踪，但是先不管了。首先把树莓派组装起来，放在外壳里（别插内存卡）   本体先放在一旁，用读卡器把内存卡插入电脑，下载官方提供的xx">
@@ -385,7 +385,8 @@
 <p>这时候看到日志里的端口号，想是不是没有加端口，于是在笔记本里的vnc加上了端口尝试连接，这次报了另外一个错，没事，有进展就行。  </p>
 <p>报错是提示安全问题，如果要继续连接需要降低安全等级，那就降低咯，反正是本地，在设置里面找了半天安全等级，英文渣真是难受，把安全等级降低到最弱，再次尝试，终于连上的，但是还需要密码。  </p>
 <p>密码？我试了一下系统用户的密码，都不行，刚才那个<code>passwd</code>文件还都是乱码，也不靠谱，找了一下发现要用<code>vncpasswd</code>设置密码，设置了密码后再再连接，终于连上了。。感觉有点心累，更心累的是刚刚想去吃饭，发现这个博文没有保存，只能重新写了ORZ  </p>
-<p>检查了一下，原来是hexo进程出了个错，emmm不应该开一整天的<br>（最后发现是不知道怎么回事这篇博文的markdown源码格式出错了）</p>
+<p>检查了一下，原来是hexo进程出了个错，emmm不应该开一整天的<br>（最后发现是不知道怎么回事这篇博文的markdown源码格式出错了）  </p>
+<p>吃完饭回来了，想了一下，用windows自带远程也可以连接，打开运行<code>mstsc</code>，连接ip，设置vnc-any，修改端口，填写密码，即可登录。</p>
 
       
     </div>
@@ -425,6 +426,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/21/该对win7说再见了？/" rel="prev" title="也许该对win7说再见了？">
+                也许该对win7说再见了？ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -497,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
