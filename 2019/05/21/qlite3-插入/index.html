@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="First Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/linux/index.html">
+<meta name="description" content="sqlite轻量级的数据库，印象深刻。记录两个技巧    insert into or ignore代替insert，避免重复插入同时避免多余的判断 批量插入前可以利用事务来加快效率conn.execute(&amp;quot;BEGIN TRANSACTION;&amp;quot;)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlite3">
+<meta property="og:url" content="http://yoursite.com/2019/05/21/qlite3-插入/index.html">
 <meta property="og:site_name" content="First Hexo">
+<meta property="og:description" content="sqlite轻量级的数据库，印象深刻。记录两个技巧    insert into or ignore代替insert，避免重复插入同时避免多余的判断 批量插入前可以利用事务来加快效率conn.execute(&amp;quot;BEGIN TRANSACTION;&amp;quot;)">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-21T10:11:00.972Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First Hexo">
+<meta name="twitter:title" content="sqlite3">
+<meta name="twitter:description" content="sqlite轻量级的数据库，印象深刻。记录两个技巧    insert into or ignore代替insert，避免重复插入同时避免多余的判断 批量插入前可以利用事务来加快效率conn.execute(&amp;quot;BEGIN TRANSACTION;&amp;quot;)">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/linux/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/21/qlite3-插入/">
 
 
 
 
 
-  <title>标签: linux | First Hexo</title>
+  <title>sqlite3 | First Hexo</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -254,52 +258,155 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>linux<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/21/qlite3-插入/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cookies">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="First Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/09/entos-升级python3/" itemprop="url">
-              
-                <span itemprop="name">centos 升级python3</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">sqlite3</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-09T21:15:00+08:00" content="2018-12-09">
-          12-09
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-21T18:08:23+08:00">
+                2019-05-21
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/05/21/qlite3-插入/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/21/qlite3-插入/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>sqlite轻量级的数据库，印象深刻。<br>记录两个技巧  </p>
+<ol>
+<li><code>insert into or ignore</code>代替insert，避免重复插入同时避免多余的判断</li>
+<li>批量插入前可以利用事务来加快效率<code>conn.execute(&quot;BEGIN TRANSACTION;&quot;)</code></li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/03/qbot-by-docker/" rel="next" title="qqbot-by-docker">
+                <i class="fa fa-chevron-left"></i> qqbot-by-docker
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -307,6 +414,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -547,6 +661,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
