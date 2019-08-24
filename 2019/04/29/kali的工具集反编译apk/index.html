@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="First Hexo">
 <meta property="og:description" content="因为想查看app的一些api以及签名算法，所以试试反编译工具。首先上传apk，然后命令行打开所在目录。现在用起点apk做个测试   第一步使用apktoolapktool d -f qidian.apk -o apktool123456789101112131415root@kali:~/文档/qidian# apktool d -f qidian.apk -o apktoolI: Using A">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-16T16:13:17.469Z">
+<meta property="og:updated_time" content="2019-07-08T13:14:52.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用kali的工具集反编译apk">
 <meta name="twitter:description" content="因为想查看app的一些api以及签名算法，所以试试反编译工具。首先上传apk，然后命令行打开所在目录。现在用起点apk做个测试   第一步使用apktoolapktool d -f qidian.apk -o apktool123456789101112131415root@kali:~/文档/qidian# apktool d -f qidian.apk -o apktoolI: Using A">
@@ -355,7 +355,9 @@
 <h6 id="第二步-把apk文件重命名为zip文件，解压，将解压的classes-dex文件取出，使用d2j-dex2jar来尝试输出jar"><a href="#第二步-把apk文件重命名为zip文件，解压，将解压的classes-dex文件取出，使用d2j-dex2jar来尝试输出jar" class="headerlink" title="第二步 把apk文件重命名为zip文件，解压，将解压的classes.dex文件取出，使用d2j-dex2jar来尝试输出jar"></a>第二步 把apk文件重命名为zip文件，解压，将解压的classes.dex文件取出，使用d2j-dex2jar来尝试输出jar</h6><p><code>d2j-dex2jar classes.dex</code><br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">root@</span>kali:~/文档/qidian/dex/dex2jar-<span class="number">2.0</span># d2j-dex2jar classes.dex</span><br><span class="line">dex2jar classes.dex -&gt; ./classes-dex2jar.jar</span><br><span class="line">WARN: ignored invalid <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">name</span> , <span class="type">treat as anonymous inner class.</span></span></span><br><span class="line">WARN: ignored invalid <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">name</span> , <span class="type">treat as anonymous inner class.</span></span></span><br><span class="line">WARN: ignored invalid <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">name</span> , <span class="type">treat as anonymous inner class.</span></span></span><br><span class="line">WARN: ignored invalid <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">name</span> , <span class="type">treat as anonymous inner class.</span></span></span><br><span class="line">WARN: ignored invalid <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">name</span> , <span class="type">treat as anonymous inner class.</span></span></span><br><span class="line">WARN: ignored invalid <span class="keyword">inner</span> <span class="class"><span class="keyword">class</span> <span class="title">name</span> , <span class="type">treat as anonymous inner class.</span></span></span><br><span class="line">Killed</span><br></pre></td></tr></table></figure></p>
 <p>好的，工具出错也是正常的，出错就找原因吧，首先它输出的22字节的jar文件，肯定是有问题的，其次用windows平台的dex2jar工具也出错，所以不是工具的问题，应该说dex文件有问题？<br>在dex2jar官网的讨论里，看到了类似的问题<code>miss inner class</code>  </p>
 <p>然后使用<code>jd-gui</code>工具，打开<code>dex.jar</code>，提出源文件即可查看代码<br>使用这个工具提取的java代码，类的名字好像都是abcd什么的  </p>
-<p>终于成功逆向了一次数字签名的实现，第一次看到数字签名的时候，完全不知道是什么，那时候以为都是固定的，直到一直失败才发现，还有动态生成的签名。那时候挺绝望的2333<br>无论如何，天道酬勤，坑总是可以过的</p>
+<p>终于成功逆向了一次数字签名的实现，第一次看到数字签名的时候，完全不知道是什么，那时候以为都是固定的，直到一直失败才发现，还有动态生成的签名。那时候挺绝望的2333<br>无论如何，天道酬勤，坑总是可以过的  </p>
+<hr>
+<p><strong>2019/7/8 更新</strong><br>因为<code>dex2jar</code>太老，一些dex无法逆向，这里发现一个新项目<a href="https://github.com/Storyyeller/enjarify" target="_blank" rel="noopener">enjarily</a><br>使用<code>python3</code>逆向<code>dex</code>文件</p>
 
       
     </div>
@@ -465,7 +467,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -476,7 +478,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
