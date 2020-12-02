@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="[TOC] 1. sql基础^注1sql定义 sql全称是结构化查询语言。 Sql属于非过程化语言。 命令动词共9个     类型 控制命令     数据定义 create drop alter   数据操纵 select insert update delete   数据控制 grant revkoe    语句类型   类型 简写 内容 关键字     数据查询语言 DQL 检索数据库的数据">
+<meta name="description" content="[TOC] 1. sql基础^注1sql定义 sql全称是结构化查询语言。 Sql属于非过程化语言。 命令动词共9个     类型 控制命令     数据定义 create drop alter   数据操纵 select insert update delete   数据控制 grant revoke    语句类型   类型 简写 内容 关键字     数据查询语言 DQL 检索数据库的数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="oracle练习">
 <meta property="og:url" content="http://yoursite.com/2020/11/27/racle练习/index.html">
 <meta property="og:site_name" content="First Hexo">
-<meta property="og:description" content="[TOC] 1. sql基础^注1sql定义 sql全称是结构化查询语言。 Sql属于非过程化语言。 命令动词共9个     类型 控制命令     数据定义 create drop alter   数据操纵 select insert update delete   数据控制 grant revkoe    语句类型   类型 简写 内容 关键字     数据查询语言 DQL 检索数据库的数据">
+<meta property="og:description" content="[TOC] 1. sql基础^注1sql定义 sql全称是结构化查询语言。 Sql属于非过程化语言。 命令动词共9个     类型 控制命令     数据定义 create drop alter   数据操纵 select insert update delete   数据控制 grant revoke    语句类型   类型 简写 内容 关键字     数据查询语言 DQL 检索数据库的数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-27T03:20:55.121Z">
+<meta property="og:updated_time" content="2020-12-02T09:05:57.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="oracle练习">
-<meta name="twitter:description" content="[TOC] 1. sql基础^注1sql定义 sql全称是结构化查询语言。 Sql属于非过程化语言。 命令动词共9个     类型 控制命令     数据定义 create drop alter   数据操纵 select insert update delete   数据控制 grant revkoe    语句类型   类型 简写 内容 关键字     数据查询语言 DQL 检索数据库的数据">
+<meta name="twitter:description" content="[TOC] 1. sql基础^注1sql定义 sql全称是结构化查询语言。 Sql属于非过程化语言。 命令动词共9个     类型 控制命令     数据定义 create drop alter   数据操纵 select insert update delete   数据控制 grant revoke    语句类型   类型 简写 内容 关键字     数据查询语言 DQL 检索数据库的数据">
 
 
 
@@ -373,7 +373,7 @@
 </tr>
 <tr>
 <td style="text-align:center">数据控制</td>
-<td><a href="#grant">grant</a> <a href="#revkoe">revkoe</a></td>
+<td><a href="#grant">grant</a> <a href="#revoke">revoke</a></td>
 </tr>
 </tbody>
 </table>
@@ -429,14 +429,7 @@
 <h1 id="2-常用sql语句"><a href="#2-常用sql语句" class="headerlink" title="2. 常用sql语句"></a>2. 常用sql语句</h1><h2 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h2><h3 id="select语法-注2"><a href="#select语法-注2" class="headerlink" title="select语法[^注2]"></a><span id="select">select语法</span>[^注2]</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ([<span class="keyword">distinct</span>|all]|<span class="keyword">columns</span>|*)  <span class="comment">--查询字段或指定字段，可以选择去重</span></span><br><span class="line">(<span class="keyword">into</span> new_table)    <span class="comment">--插入到新的表 可选</span></span><br><span class="line"><span class="keyword">from</span> (other_tbale|<span class="keyword">view</span>|<span class="keyword">select</span>) <span class="comment">--指定查询来源，可以是表，视图和其它查询 可选</span></span><br><span class="line">(<span class="keyword">where</span> condition)   <span class="comment">--指定搜索条件 可选</span></span><br><span class="line">(<span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">columns</span>)  <span class="comment">--分组语句，字段可多个 可选</span></span><br><span class="line">(<span class="keyword">having</span> condition)  <span class="comment">--分组后的筛选，必须在group后使用</span></span><br><span class="line">(<span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">columns</span>)  <span class="comment">--指定字段排序，可多个字段</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>sql可使用<code>+-*/</code>以及<code>()</code>进行数据运算。</li>
-<li>使用<code>as</code>或者直接为列指定别名，不需要用单引号包括，可以用双引号包含别名。<br>参考 <code>select sal (as) 工资 from emp;</code></li>
-<li>字段前加<code>disinct</code>可查询不重复记录</li>
-<li>使用<code>nvl</code>函数处理<code>null</code>值，当值为<code>null</code>返回0</li>
-<li>使用<code>||</code>或<code>concat</code>函数连接字符串，可以连接数字<h3 id="筛选查询"><a href="#筛选查询" class="headerlink" title="筛选查询"></a>筛选查询</h3></li>
-<li>比较筛选<br>在<code>where</code>使用运算符进行筛选</li>
-<li>关键字筛选，关键字前加<code>not</code>来否定<br><code>like 匹配字符串</code>  使用<code>%</code>(一个或多个字符),(一个字符)匹配字符串，使用\来转义%<br><code>in(值1,值2,值3)</code> 判断是否属于后面值。<br><code>between 值1 and 值2</code>   判断数值是否在值1到值2间，包含值1和值2.<br><code>is null</code>  判断是否null</li>
-<li><p>逻辑筛选<br>使用<code>and</code> <code>or</code> <code>not</code>来组合多个筛选条件。</p>
-<h3 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--分组语法</span></span><br><span class="line"><span class="keyword">select</span> column1 <span class="keyword">from</span> tbalename (<span class="keyword">where</span> condition)</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> column2 (<span class="keyword">having</span> 判断)</span><br><span class="line">(<span class="keyword">order</span> <span class="keyword">by</span> column3 <span class="keyword">asc</span>|<span class="keyword">desc</span>);</span><br></pre></td></tr></table></figure>
+<li><p>使用<code>as</code>或者直接为列指定别名，不需要用单引号包括，可以用双引号包含别名。<br>参考 <figure class="highlight plain"><figcaption><span>sal (as) 工资 from emp;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-	字段前加`disinct`可查询不重复记录</span><br><span class="line">-	使用`nvl`函数处理`null`值，当值为`null`返回0</span><br><span class="line">-	使用`||`或`concat`函数连接字符串，可以连接数字</span><br><span class="line">### 筛选查询</span><br><span class="line">-	比较筛选</span><br><span class="line">在`where`使用运算符进行筛选</span><br><span class="line">-	关键字筛选，关键字前加`not`来否定</span><br><span class="line">`like 匹配字符串`  使用`%`(一个或多个字符),(一个字符)匹配字符串，使用\来转义%</span><br><span class="line">`in(值1,值2,值3) ` 判断是否属于后面值。</span><br><span class="line">`between 值1 and 值2`   判断数值是否在值1到值2间，包含值1和值2.</span><br><span class="line">`is null`  判断是否null</span><br><span class="line">-	逻辑筛选</span><br><span class="line">使用`and` `or` `not`来组合多个筛选条件。</span><br><span class="line">### 分组查询</span><br><span class="line">```sql</span><br><span class="line">--分组语法</span><br><span class="line">select column1 from tbalename (where condition)</span><br><span class="line">group by column2 (having 判断)</span><br><span class="line">(order by column3 asc|desc);</span><br></pre></td></tr></table></figure></p>
 </li>
 <li><p>使用<code>group by</code>指定分组字段名，可指定多个。</p>
 </li>
@@ -769,11 +762,11 @@
 <li><code>continue</code> 退出本次循环，开启下次循环<h2 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h2></li>
 <li>游标分为显式游标和隐式游标。</li>
 <li>显式游标是用户定义和操作的，隐式游标为<code>oracle</code>操纵。</li>
-<li>显式游标的使用步骤为，声明、打开、读取和关闭。<h3 id="显式游标"><a href="#显式游标" class="headerlink" title="显式游标"></a>显式游标</h3></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">--游标使用</span><br><span class="line">declare</span><br><span class="line">    --	定义游标，传入参数可以直接赋值</span><br><span class="line">    cursor cursor_test(pat in char(10):=&apos;传入参数&apos;)</span><br><span class="line">    is (select uid from table1 where uname=pat);</span><br><span class="line">    uid number(10);</span><br><span class="line">begin</span><br><span class="line">    open cursor_test;  --开启游标</span><br><span class="line">    fetch cursor_test into uid;  --读取游标</span><br><span class="line">    while cursor_test%found loop  --循环读取游标</span><br><span class="line">        fetch cursor_test into uid; </span><br><span class="line">    end loop;</span><br><span class="line">    close cursor_test;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">--for循环读取游标，不需要操作游标的打开关闭</span><br><span class="line">declare</span><br><span class="line">    cursor cursor_test(pat in char(10):=&apos;传入参数&apos;)</span><br><span class="line">    is (select uid from table1 where uname=pat);</span><br><span class="line">    uid number(10);</span><br><span class="line">begin</span><br><span class="line">    for cursor_one in cursor_test%found loop</span><br><span class="line">        dbms_output.put_line(cursor_one.uid);</span><br><span class="line">    end loop;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用游标前需要检查是否打开。</li>
+<li><p>显式游标的使用步骤为，声明、打开、读取和关闭。</p>
+<h3 id="显式游标"><a href="#显式游标" class="headerlink" title="显式游标"></a>显式游标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">--游标使用</span><br><span class="line">declare</span><br><span class="line">    --	定义游标，传入参数可以直接赋值</span><br><span class="line">    cursor cursor_test(pat in char(10):=&apos;传入参数&apos;)</span><br><span class="line">    is (select uid from table1 where uname=pat);</span><br><span class="line">    uid number(10);</span><br><span class="line">begin</span><br><span class="line">    open cursor_test;  --开启游标</span><br><span class="line">    fetch cursor_test into uid;  --读取游标</span><br><span class="line">    while cursor_test%found loop  --循环读取游标</span><br><span class="line">        fetch cursor_test into uid; </span><br><span class="line">    end loop;</span><br><span class="line">    close cursor_test;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">--for循环读取游标，不需要操作游标的打开关闭</span><br><span class="line">declare</span><br><span class="line">    cursor cursor_test(pat in char(10):=&apos;传入参数&apos;)  --也可以在使用游标时传参，cursor_test(&apos;t&apos;)</span><br><span class="line">    is (select uid from table1 where uname=pat);</span><br><span class="line">    uid number(10);</span><br><span class="line">begin</span><br><span class="line">    for cursor_one in cursor_test loop</span><br><span class="line">        dbms_output.put_line(cursor_one.uid);</span><br><span class="line">    end loop;</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用游标前需要检查是否打开。</p>
+</li>
 <li>每次取出数据都需要检查是否返回成功。</li>
 <li>取出数据时，需要和变量组的各个数据类型一样。</li>
 <li>使用完游标必须关闭，释放内存。</li>
@@ -1032,7 +1025,12 @@
 </tr>
 </tbody>
 </table>
-<h1 id="5-表空间"><a href="#5-表空间" class="headerlink" title="5. 表空间"></a>5. 表空间</h1><h1 id="6-数据表操作"><a href="#6-数据表操作" class="headerlink" title="6. 数据表操作"></a>6. 数据表操作</h1><blockquote>
+<h1 id="5-表空间"><a href="#5-表空间" class="headerlink" title="5. 表空间"></a>5. 表空间</h1><blockquote>
+<p>orcale的磁盘空间最高逻辑是表空间。</p>
+<p>下一层是段，段的下一层是盘区，盘区的下一层是数据块，数据块是磁盘空间逻辑最底层。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建永久表空间</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> tablespacename</span><br><span class="line"><span class="keyword">datafile</span> <span class="string">'\home\me\data\tbs_me.dbf'</span>  <span class="comment">--表空间数据文件</span></span><br><span class="line"><span class="keyword">size</span> <span class="number">10</span>m;</span><br></pre></td></tr></table></figure>
+<h1 id="6-数据表操作"><a href="#6-数据表操作" class="headerlink" title="6. 数据表操作"></a>6. 数据表操作</h1><blockquote>
 <p>数据表是oracle的主要存储方式。</p>
 </blockquote>
 <h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a><span id="create">创建表</span></h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建数据表语法</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tablename(</span><br><span class="line">    uid <span class="built_in">number</span>(<span class="number">10</span>),  <span class="comment">--定义表内的参数</span></span><br><span class="line">    <span class="keyword">name</span> <span class="built_in">char</span>(<span class="number">10</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">tablespace</span>  <span class="comment">--表空间名</span></span><br><span class="line"><span class="keyword">storage</span>(    <span class="comment">--存储参数，表空间为自动化管理时，才能指定参数</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="number">256</span>k  <span class="comment">--第一个盘区的大小</span></span><br><span class="line">    <span class="keyword">next</span> <span class="number">1</span>m		  <span class="comment">--下一个盘区的大小</span></span><br><span class="line">    <span class="keyword">minextents</span> <span class="number">1</span>  <span class="comment">--最少盘区数</span></span><br><span class="line">    <span class="keyword">maxextents</span> <span class="keyword">unlimited</span>  <span class="comment">--不限制最大盘区数</span></span><br><span class="line">)  </span><br><span class="line"><span class="comment">--以下是数据块管理参数，未赋值</span></span><br><span class="line">Pctfree 	<span class="comment">--表保留块所占的百分比</span></span><br><span class="line"><span class="keyword">Pctused</span> 	<span class="comment">--表示数据块高于指定百分比时，可以插入</span></span><br><span class="line"><span class="keyword">Initrans</span> 	<span class="comment">--初始化事务槽个数</span></span><br><span class="line"><span class="keyword">Maxtrans</span> 	<span class="comment">--最大事务槽数量</span></span><br><span class="line"><span class="keyword">Initial</span> 	<span class="comment">--初始块大小，默认单位B</span></span><br><span class="line"><span class="keyword">Next</span> 		<span class="comment">--初始块满后，每次扩展大小，默认单位B</span></span><br><span class="line">Minextrents <span class="comment">--初始创建分配块数量</span></span><br><span class="line">Maxextrents <span class="comment">--最多可分配块数量</span></span><br></pre></td></tr></table></figure>
@@ -1109,8 +1107,380 @@
 <li><p>b树索引适合基数大的字段。</p>
 </li>
 </ul>
-<h2 id="位图索引"><a href="#位图索引" class="headerlink" title="位图索引"></a>位图索引</h2><h2 id="反向索引"><a href="#反向索引" class="headerlink" title="反向索引"></a>反向索引</h2><h2 id="函数索引"><a href="#函数索引" class="headerlink" title="函数索引"></a>函数索引</h2><h2 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h2><h1 id="8-视图"><a href="#8-视图" class="headerlink" title="8. 视图"></a>8. 视图</h1><h1 id="9-同义词和序列"><a href="#9-同义词和序列" class="headerlink" title="9. 同义词和序列"></a>9. 同义词和序列</h1><h1 id="10-用户与角色"><a href="#10-用户与角色" class="headerlink" title="10. 用户与角色"></a>10. 用户与角色</h1><p><span id="user"> </span></p>
-<h1 id="11-事务控制"><a href="#11-事务控制" class="headerlink" title="11. 事务控制"></a>11. 事务控制</h1><h1 id="12-并发和死锁"><a href="#12-并发和死锁" class="headerlink" title="12. 并发和死锁"></a>12. 并发和死锁</h1><h1 id="13-sql优化"><a href="#13-sql优化" class="headerlink" title="13. sql优化"></a>13. sql优化</h1><p>[^注2]:<code>tablename</code> 表示表名，<code>column</code>或<code>col</code>表示字段名，<code>columns</code>表示多个字段，<code>condition</code>表示判断条件</p>
+<h2 id="位图索引"><a href="#位图索引" class="headerlink" title="位图索引"></a>位图索引</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">bitmap</span> <span class="keyword">index</span> index_test <span class="keyword">on</span> tablename(<span class="keyword">column</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>位图索引适合基数小的字段。</li>
+</ul>
+<h2 id="反向索引"><a href="#反向索引" class="headerlink" title="反向索引"></a>反向索引</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> index_test <span class="keyword">on</span> tablename(<span class="keyword">column</span>) <span class="keyword">reverse</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>反向索引阻止b树偏向于一个方向。</p>
+</li>
+<li><p>反向索引使数据随机分散。</p>
+</li>
+<li><p>反向索引适合单调递增的字段。</p>
+</li>
+</ul>
+<h2 id="函数索引"><a href="#函数索引" class="headerlink" title="函数索引"></a>函数索引</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> <span class="keyword">index</span>-<span class="keyword">test</span> <span class="keyword">on</span> func(tablename(<span class="keyword">column</span>));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数索引适用于查询条件经常使用该函数的情况。</li>
+</ul>
+<h2 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h2><h2 id="索引控制"><a href="#索引控制" class="headerlink" title="索引控制"></a>索引控制</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--修改索引表空间</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">index</span> index_test <span class="keyword">rebuild</span> <span class="keyword">tablespace</span> tablespacename;</span><br><span class="line"><span class="comment">--合并索引</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">index</span> index_test <span class="keyword">coalesce</span> <span class="keyword">deallocate</span> <span class="keyword">unused</span>;</span><br><span class="line"><span class="comment">--重建索引</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">index</span> index_test <span class="keyword">rebuild</span>;</span><br><span class="line"><span class="comment">--删除索引</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">index</span> index_test;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>重建索引可以修改索引参数</p>
+</li>
+<li><p>合并和修改索引都可以清除索引的碎片，提高效率。</p>
+</li>
+</ul>
+<h1 id="8-视图"><a href="#8-视图" class="headerlink" title="8. 视图"></a>8. 视图</h1><blockquote>
+<p>视图是由查询输出的虚拟表。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建视图语法</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">view</span> view_name (columnsname_new)</span><br><span class="line"><span class="keyword">as</span> <span class="keyword">select</span> <span class="keyword">columns</span> <span class="keyword">from</span> tablename</span><br><span class="line">(<span class="keyword">with</span> <span class="keyword">check</span>)</span><br><span class="line">(<span class="keyword">with</span> <span class="keyword">read</span> <span class="keyword">only</span>);</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">简单视图</td>
+<td>不含函数、表达式和分组的视图。</td>
+</tr>
+<tr>
+<td style="text-align:center">只读视图</td>
+<td>使用with read only 创建的只能读取的视图。</td>
+</tr>
+<tr>
+<td style="text-align:center">复杂视图</td>
+<td>含有函数、表达式或分组的视图。</td>
+</tr>
+<tr>
+<td style="text-align:center">连接视图</td>
+<td>多表连接的视图。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--查看视图定义</span></span><br><span class="line">desc viewname;</span><br><span class="line"><span class="comment">--修改视图定义</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">view</span>  <span class="comment">--(省略后续定义)</span></span><br><span class="line"><span class="comment">--重新编译视图</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">view</span> vivewname compile;</span><br><span class="line"><span class="comment">--删除视图</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> viewname;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除视图不会影响到视图查询的数据。</p>
+</blockquote>
+<h1 id="9-同义词和序列"><a href="#9-同义词和序列" class="headerlink" title="9. 同义词和序列"></a>9. 同义词和序列</h1><h2 id="同义词"><a href="#同义词" class="headerlink" title="同义词"></a>同义词</h2><blockquote>
+<p>同义词是表、索引和视图的别名。</p>
+<p>同义词分为公有和私有，公有同义词可以直接访问，私有同义词被其它用户访问时，需要指定模式名和拥有权限。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建同义词</span></span><br><span class="line"><span class="keyword">create</span> (<span class="keyword">public</span>) <span class="keyword">synonym</span> synonymname <span class="keyword">for</span> username.object;</span><br><span class="line"><span class="comment">--删除同义词</span></span><br><span class="line"><span class="keyword">drop</span> (<span class="keyword">public</span>) <span class="keyword">synonym</span> synonymname;</span><br></pre></td></tr></table></figure>
+<h2 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h2><ul>
+<li><p>序列是oracle提供输出唯一数字的对象。</p>
+</li>
+<li><p>序列可以提供递增或递减的数字。</p>
+</li>
+<li><p>序列可以在多用户并发环境使用。</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建序列</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> sequencename</span><br><span class="line">maxvalue <span class="number">100</span>	<span class="comment">--最大值</span></span><br><span class="line"><span class="keyword">min</span> <span class="keyword">value</span> <span class="number">1</span>		<span class="comment">--最小值</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span>	<span class="comment">--起始值</span></span><br><span class="line"><span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span>  <span class="comment">--递增或递减值</span></span><br><span class="line"><span class="keyword">cycle</span>|<span class="keyword">nocycle</span>	<span class="comment">--是否循环</span></span><br><span class="line"><span class="keyword">cache</span>|nocache	<span class="comment">--是否缓存</span></span><br><span class="line"><span class="keyword">order</span>|<span class="keyword">noorder</span>;	<span class="comment">--是否按序变化</span></span><br><span class="line"><span class="comment">--使用序列</span></span><br><span class="line"><span class="keyword">select</span> sequencename.nextval <span class="keyword">from</span> dual; <span class="comment">--初始化和获取下一位序列</span></span><br><span class="line"><span class="keyword">select</span> sequencename.currval <span class="keyword">from</span> dual; <span class="comment">--获取当前序列值</span></span><br><span class="line"><span class="comment">--修改序列结果</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">sequence</span> sequencename <span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">-1</span>;  <span class="comment">--修改为递减1</span></span><br><span class="line"><span class="comment">--删除序列</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">sequence</span> sequencename;</span><br></pre></td></tr></table></figure>
+<h1 id="10-用户与角色"><a href="#10-用户与角色" class="headerlink" title="10. 用户与角色"></a>10. 用户与角色</h1><h2 id="用户"><a href="#用户" class="headerlink" title=" 用户"></a><span id="user"> 用户</span></h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建用户语法</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> <span class="keyword">password</span>		<span class="comment">--设置用户名和密码</span></span><br><span class="line"><span class="keyword">default</span> <span class="keyword">tablespace</span> tablespacename   			<span class="comment">--指定默认表空间</span></span><br><span class="line"><span class="keyword">temporary</span> <span class="keyword">tablespace</span> temporary_tablespacename   <span class="comment">--指定临时表空间</span></span><br><span class="line"><span class="keyword">quota</span> [<span class="number">10</span> m|<span class="keyword">unlimited</span>] <span class="keyword">on</span> tablespacename		<span class="comment">--设置用户的表空间额度</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>用户名和密码，一般是字母、数字、’#’和’_’</p>
+</li>
+<li><p>不指定表空间时，默认使用system为用户表空间。</p>
+</li>
+</ul>
+<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--修改用户密码</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> username <span class="keyword">identified</span> <span class="keyword">by</span> newpassword;</span><br><span class="line"><span class="comment">--修改表空间</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> username remove <span class="keyword">tablespace</span> <span class="keyword">to</span> tablespacename_new;</span><br><span class="line"><span class="comment">--修改表空间额度</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> username <span class="keyword">quota</span> [<span class="number">10</span> m|<span class="keyword">unlimited</span>] <span class="keyword">on</span> tablespacename;</span><br><span class="line"><span class="comment">--解锁用户</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> username <span class="keyword">account</span> <span class="keyword">unlock</span>;</span><br><span class="line"><span class="comment">--删除用户</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> username (<span class="keyword">cascade</span>);  <span class="comment">--cascade表示删除用户的数据库对象</span></span><br></pre></td></tr></table></figure>
+<h3 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h3><h4 id="授权"><a href="#授权" class="headerlink" title="授权"></a><span id="grant">授权</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--授权用户</span></span><br><span class="line"><span class="keyword">grant</span> privis <span class="keyword">to</span> username  <span class="comment">--privis 表示授予权限名，可以多个</span></span><br><span class="line">(<span class="keyword">with</span> <span class="keyword">admin</span> <span class="keyword">option</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>with admin option表示被授予用户可以传递权限</li>
+</ul>
+<h4 id="取消授权"><a href="#取消授权" class="headerlink" title="取消授权"></a><span id="revoke">取消授权</span></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--收回权限</span></span><br><span class="line"><span class="keyword">revoke</span> privis <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在收回权限前，被授权的用户，不会因为授权用户被收回权限而收回权限。</li>
+</ul>
+<h2 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h2><blockquote>
+<p>角色即一组权限，可以赋予给用户。</p>
+<p>角色分为系统预定角色和自定义权限。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--创建角色</span></span><br><span class="line"><span class="keyword">create</span> cole colename <span class="keyword">identified</span> <span class="keyword">by</span> <span class="keyword">password</span>;</span><br><span class="line"><span class="comment">--授权给角色</span></span><br><span class="line"><span class="keyword">grant</span> privis <span class="keyword">to</span> colename;</span><br><span class="line"><span class="comment">--收回权限</span></span><br><span class="line"><span class="keyword">revoke</span> privis <span class="keyword">from</span> colename;</span><br><span class="line"><span class="comment">--设置无密码</span></span><br><span class="line"><span class="keyword">alter</span> cole colename <span class="keyword">not</span> <span class="keyword">identified</span>;</span><br><span class="line"><span class="comment">--修改密码</span></span><br><span class="line"><span class="keyword">alter</span> cole colename <span class="keyword">identified</span> <span class="keyword">by</span> password_new;</span><br><span class="line"><span class="comment">--删除角色</span></span><br><span class="line"><span class="keyword">drop</span> cole colename;</span><br><span class="line"><span class="comment">--查询当前有效权限</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> session_roles;</span><br></pre></td></tr></table></figure>
+<h1 id="11-事务控制"><a href="#11-事务控制" class="headerlink" title="11. 事务控制"></a>11. 事务控制</h1><blockquote>
+<p>事务是一系列语句构成的逻辑工作单位。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">事务特性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">原子性</td>
+<td>事务所做的操作要么全部成功，要么全部失败。</td>
+</tr>
+<tr>
+<td style="text-align:center">一致性</td>
+<td>事务结束或成功，所有数据都保持相同状态。</td>
+</tr>
+<tr>
+<td style="text-align:center">隔离性</td>
+<td>事务无法获取并发事务执行的中间态。</td>
+</tr>
+<tr>
+<td style="text-align:center">持久性</td>
+<td>事务提交后，修改将永远保存</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">事务状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">活动态</td>
+<td>事务正在执行中</td>
+</tr>
+<tr>
+<td style="text-align:center">部分提交态</td>
+<td>事务最后一句语句提交后的状态。</td>
+</tr>
+<tr>
+<td style="text-align:center">失败态</td>
+<td>事务无法成功，产生回滚。</td>
+</tr>
+<tr>
+<td style="text-align:center">提交态</td>
+<td>将最后一次更改信息完成后。</td>
+</tr>
+<tr>
+<td style="text-align:center">终止态</td>
+<td>事务产生回滚，数据库恢复到事务执行前。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>隐式事务是oracle自动执行</p>
+</blockquote>
+<p>oracle认为结束事务</p>
+<ol>
+<li><p>commit语句提交事务。</p>
+</li>
+<li><p>rollback回滚数据。</p>
+</li>
+<li><p>执行ddl或dcl语句。</p>
+</li>
+<li><p>正常断开数据库连接。</p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--事务操作</span></span><br><span class="line"><span class="comment">--设置事务</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">transaction</span> [<span class="keyword">read</span> <span class="keyword">only</span>|<span class="keyword">read</span> write];  <span class="comment">--设置事务是只读还是读写</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> autocommit <span class="keyword">on</span>  	 <span class="comment">--设置事务自动提交，每条dml都会提交事务，不推荐。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">rollback</span>;          	 <span class="comment">--回滚事务</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">savepoint</span> point1;	 <span class="comment">--保存回退点</span></span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> point11; <span class="comment">--回滚到事务开始前或指定回退点。</span></span><br></pre></td></tr></table></figure>
+<h1 id="12-并发和死锁"><a href="#12-并发和死锁" class="headerlink" title="12. 并发和死锁"></a>12. 并发和死锁</h1><blockquote>
+<p>当多个事务同时访问或修改共享数据库，将破坏事务隔离性。</p>
+<p>使用锁保证数据的并发。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">锁的类型</th>
+<th style="text-align:center">简写</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">共享锁</td>
+<td style="text-align:center"><code>S</code></td>
+<td>任何事务不得修改数据，其它事务可以查询。</td>
+</tr>
+<tr>
+<td style="text-align:center">排他锁</td>
+<td style="text-align:center"><code>X</code></td>
+<td>当前事务可以查询和修改，其它事务只能查询。</td>
+</tr>
+<tr>
+<td style="text-align:center">行级共享锁</td>
+<td style="text-align:center"><code>RS</code></td>
+<td>被查询的数据不能被修改，加了行级共享锁的表不能添加排他锁。</td>
+</tr>
+<tr>
+<td style="text-align:center">行级排他锁</td>
+<td style="text-align:center"><code>RX</code></td>
+<td>表内其它数据可以被其它事务修改。</td>
+</tr>
+<tr>
+<td style="text-align:center">共享锁排他</td>
+<td style="text-align:center"><code>SRX</code></td>
+<td>其它事务可以进行查询和对其它数据行加锁，但不能修改加锁数据。</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--共享锁</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> tablename <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</span><br><span class="line"><span class="comment">--排他锁</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> tablename <span class="keyword">in</span> exclusive <span class="keyword">mode</span>;</span><br><span class="line"><span class="comment">--行级共享锁</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> tablename <span class="keyword">in</span> <span class="keyword">row</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</span><br><span class="line"><span class="comment">--行级排他锁</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> tablename <span class="keyword">in</span> <span class="keyword">row</span> exclusive <span class="keyword">mode</span>;</span><br><span class="line"><span class="comment">--共享排他锁</span></span><br><span class="line"><span class="keyword">lock</span> <span class="keyword">table</span> tablename <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">row</span> exclusive <span class="keyword">mode</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>各种锁之间的排它性</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th style="text-align:center"><code>S</code></th>
+<th style="text-align:center"><code>X</code></th>
+<th style="text-align:center"><code>RS</code></th>
+<th style="text-align:center"><code>RX</code></th>
+<th style="text-align:center"><code>SRX</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>S</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>X</code></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>RS</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>RX</code></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>SRX</code></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>死锁为两个会话互相等待对方持有的资源。</p>
+</li>
+<li><p>执行事务时需要尽快提交，因为事务提交前会一直持有当前的锁。</p>
+</li>
+</ul>
+<h1 id="13-sql优化"><a href="#13-sql优化" class="headerlink" title="13. sql优化"></a>13. sql优化</h1><blockquote>
+<p>什么时候使用索引</p>
+</blockquote>
+<ol>
+<li><p>使用字段名替代*查询，节约系统查询数据字典时间。</p>
+</li>
+<li><p>使用<code>truncate</code> 替代<code>delete</code>删除表数据，<code>delete</code>将使用撤销表空间存储删除数据。</p>
+</li>
+<li><p>在<code>pl/sql</code>及时使用<code>commit</code>，释放锁，回滚段的数据。</p>
+</li>
+<li><p>查询时减少表查询次数，防止无效的多次查询。</p>
+</li>
+<li><p>大部分情况使用<code>exists</code>替代<code>in</code>，<code>in</code>将会进行数据排序。</p>
+</li>
+<li><p>将更适合做驱动表的表放在右边。</p>
+</li>
+<li><p>在<code>where</code>语句里，按过滤可能从左至右连接条件。</p>
+</li>
+</ol>
+<blockquote>
+<p>合理使用索引</p>
+</blockquote>
+<ol>
+<li><p>不对索引使用非空判断，不等于判断。</p>
+</li>
+<li><p>不对索引使用计算表达式。</p>
+</li>
+</ol>
+<h1 id="14-sql-plus"><a href="#14-sql-plus" class="headerlink" title="14. sql*plus"></a>14. sql*plus</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">set show on-off</td>
+<td>设置修改设置是否显示原值，默认off</td>
+</tr>
+<tr>
+<td style="text-align:center">set auto[commit] on-off</td>
+<td>设置是否自动提交事务，默认off</td>
+</tr>
+<tr>
+<td style="text-align:center">set array size</td>
+<td>设置sqlplus每次从数据库获取多少行，默认20</td>
+</tr>
+<tr>
+<td style="text-align:center">set line size</td>
+<td>设置每行最多的字符数，默认80</td>
+</tr>
+<tr>
+<td style="text-align:center">set null text</td>
+<td>设置null显示的文本，默认为空格</td>
+</tr>
+<tr>
+<td style="text-align:center">set timi[ing] on-off</td>
+<td>设置plsql统计时间显示，默认off</td>
+</tr>
+<tr>
+<td style="text-align:center">set ti[me] off-on</td>
+<td>设置命令提示前显示时间，默认off</td>
+</tr>
+</tbody>
+</table>
+<p>[^注2]:<code>tablename</code> 表示表名，<code>column</code>或<code>col</code>表示字段名，<code>columns</code>表示多个字段，<code>condition</code>表示判断条件</p>
+<h1 id="oracle"><a href="#oracle" class="headerlink" title="oracle"></a>oracle</h1><h2 id="关系型数据库六大范式"><a href="#关系型数据库六大范式" class="headerlink" title="关系型数据库六大范式"></a>关系型数据库六大范式</h2><h3 id="第一范式-1FN"><a href="#第一范式-1FN" class="headerlink" title="第一范式 1FN"></a>第一范式 1FN</h3><blockquote>
+<p>第一范式是第二第三范式的基础</p>
+</blockquote>
+<ul>
+<li>数据组的每个属性只可以是一个值，不可再分</li>
+<li>关系中每个数组必须拥有相同多的值</li>
+<li>关系中的每个数据一定不能相同</li>
+</ul>
+<h3 id="第二范式-2FN"><a href="#第二范式-2FN" class="headerlink" title="第二范式 2FN"></a>第二范式 2FN</h3><blockquote>
+<p>第二范式必须满足第一范式</p>
+</blockquote>
+<ul>
+<li>要求表中每行都必须可以被唯一区分，区分的属性被称为主关键字或主键</li>
+<li>实体属性必须完全依赖于主关键字，否则需要拆分</li>
+</ul>
+<h3 id="第三范式-3FN"><a href="#第三范式-3FN" class="headerlink" title="第三范式 3FN"></a>第三范式 3FN</h3><blockquote>
+<p>第三范式必须满足第二范式</p>
+</blockquote>
+<ul>
+<li>关系表中不能包含，已在其它表中包含的非主关键字信息</li>
+</ul>
+<h3 id="BC范式-BCFN"><a href="#BC范式-BCFN" class="headerlink" title="BC范式 BCFN"></a>BC范式 BCFN</h3><blockquote>
+<p>BCFN满足第三范式</p>
+</blockquote>
+<ul>
+<li>主关键字不能依赖于其它主关键字</li>
+</ul>
+<h3 id="第四范式-4FN"><a href="#第四范式-4FN" class="headerlink" title="第四范式 4FN"></a>第四范式 4FN</h3><ul>
+<li>当表的非主主属性相互独立时，非主属性不能有多值</li>
+</ul>
+<h3 id="第五范式-5FN-最终范式"><a href="#第五范式-5FN-最终范式" class="headerlink" title="第五范式 5FN 最终范式"></a>第五范式 5FN 最终范式</h3><blockquote>
+<p>第五范式必须满足第四范式</p>
+</blockquote>
+<ul>
+<li>表必须可以分解为更小的表，除非这些表在逻辑上和原表有相同的主键</li>
+</ul>
 
       
     </div>
